@@ -1,5 +1,6 @@
 
 import 'package:app_maps/UI/home_page.dart';
+import 'package:app_maps/widgets/animated.dart';
 import 'package:flutter/material.dart';
 
 class MyApp extends StatelessWidget {
@@ -14,9 +15,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: 'home',
+      initialRoute: 'animated',
       routes: {
-        'home' :(_) => HomePage(),
+        'animated'  : (context) => AnimatedSplashScreenCustom(),
+        'home'      :(_) => HomePage(),
       },
     );
   }
