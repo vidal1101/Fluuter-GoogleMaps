@@ -17,14 +17,26 @@ class _HomePageState extends State<HomePage> {
    final CameraPosition puntoIncial = CameraPosition(
     target: LatLng(10.628142, -85.432920),
     zoom: 17,
+    tilt: 50, 
+    bearing: 50, 
     );
 
   @override
   Widget build(BuildContext context) {
 
+    Set<Marker> markers = new Set<Marker>();
+
+    markers.add(new Marker(
+      markerId: MarkerId('geo-location'),
+      position: LatLng(10.628142, -85.432920),
+    ));
+
+
 
     return Scaffold(
       body: GoogleMap(
+        markers: markers,
+        compassEnabled: true,
         mapType: MapType.normal,
         initialCameraPosition: puntoIncial,
         onMapCreated: (GoogleMapController controller) {
