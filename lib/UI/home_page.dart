@@ -14,13 +14,14 @@ class _HomePageState extends State<HomePage> {
 
   Completer<GoogleMapController> _controller = Completer();
 
+   final CameraPosition puntoIncial = CameraPosition(
+    target: LatLng(10.628142, -85.432920),
+    zoom: 17,
+    );
+
   @override
   Widget build(BuildContext context) {
 
-    final CameraPosition puntoIncial = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
-    zoom: 14.4746,
-    );
 
     return Scaffold(
       body: GoogleMap(
@@ -30,6 +31,16 @@ class _HomePageState extends State<HomePage> {
           _controller.complete(controller);
         },
       ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: _goToTheLake,
+        label: Text('Punto inicial'),
+        icon: Icon(Icons.directions_boat),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
    );
+  }
+  Future<void> _goToTheLake() async {
+    final GoogleMapController controller = await _controller.future;
+    controller.animateCamera(CameraUpdate.newCameraPosition(puntoIncial));
   }
 }
